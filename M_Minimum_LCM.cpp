@@ -106,7 +106,19 @@ bool isPerfectSquare(ll x){if (x >= 0) {ll sr = sqrt(x);return (sr * sr == x);}r
 //Code
 void solve()
 {
-    
+   long long n;
+    cin >> n;
+
+    ll a=1;
+    ll b=n-1;
+    for(int i=2;i*i<=n;i++){
+        if(n%i==0){
+            a=n/i;
+            b=n-a;
+            break;
+        }
+    }
+    cout<<a<<" "<<b<<endl;
 }
 
 //Main

@@ -104,9 +104,33 @@ bool isPerfectSquare(ll x){if (x >= 0) {ll sr = sqrt(x);return (sr * sr == x);}r
 //Practice->Success
 
 //Code
-void solve()
-{
-    
+vector<ll> prime;
+
+void sieve(int n) {
+    vector<bool> isPrime(n + 1, true);
+    isPrime[0] = isPrime[1] = false;
+
+    for (int i = 2; i * i <= n; i++) {
+        if (isPrime[i]) {
+            for (int j = i * i; j <= n; j += i) {
+                isPrime[j] = false;
+            }
+        }
+    }
+
+    for (int i = 2; i <= n; i++) {
+        if (isPrime[i]) prime.push_back(i);
+    }
+}
+
+void solve() {
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        cout << prime[i] * prime[i + 1] << " ";
+    }
+    cout << '\n';
 }
 
 //Main
@@ -115,6 +139,7 @@ int main()
     Code By sandipan
     ll t;
     cin>>t;
+    sieve(200000);
 
     // Normal Format
     fl(i,t)

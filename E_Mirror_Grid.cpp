@@ -106,7 +106,50 @@ bool isPerfectSquare(ll x){if (x >= 0) {ll sr = sqrt(x);return (sr * sr == x);}r
 //Code
 void solve()
 {
+    ll n;
+    cin>>n;
+    vector<vector<char>>a(n,vector<char>(n));
+    fl(i,n){
+        fl(j,n){
+            cin>>a[i][j];
+        }
+    }
+    ll ans=0;
+    fl(i,n){
+        fl(j,n){
+            ll c1=0,c0=0;
+            if(a[i][j]=='0'){
+                c0++;
+            }
+            else c1++;
+            if(a[j][n-1-i]=='0')c0++;
+            else c1++;
+            if(a[n-i-1][n-1-j]=='0')c0++;
+            else c1++;
+            if(a[n-j-1][i]=='0')c0++;
+            else c1++;
+            if((c0==0)|| (c1==0))continue;
+            if(c1>=c0){
+                ans+=c0;
+                a[i][j]='1';
+                a[j][n-1-i]='1';
+                a[n-i-1][n-1-j]='1';
+                a[n-j-1][i]='1';
+            }
+            else{
+                ans+=c1;
+                a[i][j]='0';
+                a[j][n-1-i]='0';
+                a[n-i-1][n-1-j]='0';
+                a[n-j-1][i]='0';
+
+            }
+        }
+        
+    }
+    cout<<ans<<endl;
     
+
 }
 
 //Main

@@ -104,9 +104,23 @@ bool isPerfectSquare(ll x){if (x >= 0) {ll sr = sqrt(x);return (sr * sr == x);}r
 //Practice->Success
 
 //Code
+ll cnt(ll s,ll e){
+    ll sum=((s+e)*(e-s+1))/2;
+    return sum;
+}
 void solve()
 {
-    
+    ll n,x,y;
+    cin>>n>>x>>y;
+    ll l=lcm(x,y);
+    ll a=n/x-n/l;
+    ll b=n/y-n/l;
+    ll ans;
+    ans=cnt(n-a+1,n)-cnt(1,b);
+
+    cout<<ans<<endl;
+
+
 }
 
 //Main

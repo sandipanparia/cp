@@ -106,6 +106,12 @@ bool isPerfectSquare(ll x){if (x >= 0) {ll sr = sqrt(x);return (sr * sr == x);}r
 //Code
 void solve()
 {
+    ll n;
+    cin>>n;
+    vll a(n);
+    fl(i,n){
+        cin>>a[i];
+    }
     
 }
 

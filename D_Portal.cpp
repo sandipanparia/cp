@@ -106,7 +106,60 @@ bool isPerfectSquare(ll x){if (x >= 0) {ll sr = sqrt(x);return (sr * sr == x);}r
 //Code
 void solve()
 {
+  int n, x, y;
+    cin >> n >> x >> y;
+    vector<int> p(n);
+    for (int i = 0; i < n; i++) {
+        cin >> p[i];
+    }
+
     
+    vector<int> A, B, C;
+    for (int i = 0; i < x; i++) A.push_back(p[i]);
+    for (int i = x; i < y; i++) B.push_back(p[i]);
+    for (int i = y; i < n; i++) C.push_back(p[i]);
+
+   
+    vector<int> S;
+    S.insert(S.end(), A.begin(), A.end());
+    S.insert(S.end(), C.begin(), C.end());
+
+    
+    int min_val = B[0];
+    int min_idx = 0;
+    for (int i = 1; i < B.size(); i++) {
+        if (B[i] < min_val) {
+            min_val = B[i];
+            min_idx = i;
+        }
+    }
+
+  
+    vector<int> B_prime;
+    for (int i = min_idx; i < B.size(); i++) B_prime.push_back(B[i]);
+    for (int i = 0; i < min_idx; i++) B_prime.push_back(B[i]);
+
+   
+    int k = S.size();
+    for (int i = 0; i < S.size(); i++) {
+        if (B_prime[0] < S[i]) {
+            k = i;
+            break;
+        }
+    }
+
+    
+    vll ans;
+    ans.reserve(n);
+    fl(i,k) ans.push_back(S[i]);
+    for (int i = 0; i < B_prime.size(); i++) ans.push_back(B_prime[i]);
+    for (int i = k; i < S.size(); i++) ans.push_back(S[i]);
+
+    
+    fl(i,n) {
+        cout << ans[i] << (i == n - 1 ? "" : " ");
+    }
+    cout << "\n";
 }
 
 //Main

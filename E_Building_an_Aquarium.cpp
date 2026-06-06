@@ -104,9 +104,39 @@ bool isPerfectSquare(ll x){if (x >= 0) {ll sr = sqrt(x);return (sr * sr == x);}r
 //Practice->Success
 
 //Code
+bool check(ll m,vll &a,ll x){
+    ll u=0;
+    ll n=a.size();
+    for(int i=0;i<n;i++){
+        if(a[i]<m){
+            u+=m-a[i];
+        }
+    }
+    return u<=x;
+}
 void solve()
 {
+    ll n,x;
+    cin>>n>>x;
+    vector<ll>a(n);
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    ll ans=-1;
+    ll si=1;ll ei=1e12;
+    while(si<=ei){
+        ll m=(si+ei)/2;
+        if(check(m,a,x)){
+            ans=m;
+            si=m+1;
+        }
+        else{
+            ei=m-1;
+        }
+    }
+    cout<<ans<<endl;
     
+
 }
 
 //Main

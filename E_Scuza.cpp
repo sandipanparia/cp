@@ -104,9 +104,52 @@ bool isPerfectSquare(ll x){if (x >= 0) {ll sr = sqrt(x);return (sr * sr == x);}r
 //Practice->Success
 
 //Code
+ll binary(int val,vll &mx,int n){
+    ll ans=-1;
+    ll l=0;
+    ll r=n-1;
+    while(l<=r){
+        ll mid=l+(r-l)/2;
+
+        if(mx[mid]<=val){
+            ans=mid;
+            l=mid+1;
+        }
+        else{
+            r=mid-1;
+        }
+    }
+    return ans;
+}
 void solve()
 {
-    
+    ll n,q;
+    cin>>n>>q;
+    vll a(n);
+    fl(i,n)cin>>a[i];
+    vll k(q);
+    fl(i,q)cin>>k[i];
+    vll pr(n);
+    vll mx(n);
+    pr[0]=a[0];
+    mx[0]=a[0];
+    for(int i=1;i<n;i++){
+        pr[i]=a[i]+pr[i-1];
+        mx[i]=max(a[i],mx[i-1]);
+    }
+    for(int i=0;i<q;i++){
+        ll val=k[i];
+        ll ind=binary(val,mx,n);
+        if(ind==-1){
+            cout<<0<<" ";
+        }
+        else{
+            cout<<pr[ind]<<" ";
+        }
+        
+
+    }
+    cout<<endl;
 }
 
 //Main

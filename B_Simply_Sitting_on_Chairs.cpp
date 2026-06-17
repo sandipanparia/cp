@@ -109,18 +109,28 @@ void solve()
     ll n;
     cin>>n;
     vll p(n+1);
-    fl(i,n){
-        int x;
-        cin>>x;
-        p[x]=i+1;
+    for (int i=1;i<=n;i++) {
+        cin>>p[i];
     }
-    for(int i=1;i<=n;i++){
-        if(p[i]<i){
-            cout<<i-1<<endl;
-            return;
+    vll diff(n+3,0);
+
+    for (int i=1;i<=n;i++) {
+        if (p[i]>i) {
+            diff[i+1]++;
+            diff[p[i]+1]--;
         }
     }
-     cout << n << '\n';
+    ll s=0;
+    ll r=0;
+    ll ans=0;
+    for (int i=1;i<=n+1;i++) {
+        if (i>1&&p[i-1]<=i-1) {
+            s++;
+        }
+        r+= diff[i];
+        ans = max(ans,s+r);
+    }
+    cout << ans << '\n';
     
 }
 

@@ -104,25 +104,48 @@ bool isPerfectSquare(ll x){if (x >= 0) {ll sr = sqrt(x);return (sr * sr == x);}r
 //Practice->Success
 
 //Code
+ll red=0,white=0;
+void dfs(ll node,ll color,vector<vector<ll>>&adj,vector<ll>&visited) {
+    visited[node]++;
+    if(color==1)red++;
+    else white++;
+    
+    for(ll neighbor:adj[node]) {
+        if(!visited[neighbor]) {
+            dfs(neighbor,1-color,adj,visited); 
+        }
+    }
+}
 void solve()
 {
-    
+    red=white=0;
+    ll n;cin>>n;
+    vector<vector<ll>>adj(n,vector<ll>());
+    vector<ll>visited(n,0);
+    for(ll i=0; i<n-1;i++){ 
+        ll u,v;cin>>u>>v;
+        u--;v--; 
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    dfs(0,0,adj,visited);
+    cout<<1LL*red*white-(n-1)<<endl; 
 }
 
 //Main
 int main()
 {
     Code By sandipan
-    ll t;
-    cin>>t;
+    // ll t;
+    // cin>>t;
 
-    // Normal Format
-    fl(i,t)
-    {
-        solve();
-    }
+    // // Normal Format
+    // fl(i,t)
+    // {
+    //     solve();
+    // }
 
-    //solve(); 
+    solve(); 
 
     // Kickstart Format
     // fl(i,t)
